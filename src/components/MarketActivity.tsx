@@ -1,10 +1,7 @@
 import React from 'react';
-import { Market } from '../types';
+// Market data is generated locally for demo purposes
 import { TrendingUp, TrendingDown, Clock, User } from 'lucide-react';
 
-interface MarketActivityProps {
-  market: Market;
-}
 
 interface ActivityItem {
   id: string;
@@ -37,7 +34,7 @@ const generateActivity = (): ActivityItem[] => {
   return activities.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
 };
 
-const MarketActivity: React.FC<MarketActivityProps> = ({ market }) => {
+const MarketActivity: React.FC = () => {
   const activities = generateActivity();
   
   const formatPrice = (price: number) => `${(price * 100).toFixed(1)}¢`;

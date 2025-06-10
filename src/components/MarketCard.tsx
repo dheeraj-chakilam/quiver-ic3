@@ -126,7 +126,11 @@ const MarketCard: React.FC<MarketCardProps> = ({ market }) => {
           
           {betAmount && (
             <div className="text-sm text-gray-600">
-              You'll receive ~{Math.floor(parseFloat(betAmount) / (selectedSide === \'yes' ? market.yesPrice : market.noPrice))} shares
+              You'll receive ~{Math.floor(
+                parseFloat(betAmount) /
+                  (selectedSide === 'yes' ? market.yesPrice : market.noPrice)
+              )}{' '}
+              shares
             </div>
           )}
           

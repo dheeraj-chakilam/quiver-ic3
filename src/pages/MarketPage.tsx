@@ -145,7 +145,7 @@ const MarketPage: React.FC = () => {
               {activeTab === 'chart' ? (
                 <PriceChart market={market} />
               ) : (
-                <MarketActivity market={market} />
+                <MarketActivity />
               )}
             </div>
           </div>
