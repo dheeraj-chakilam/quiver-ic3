@@ -89,5 +89,5 @@ export const mockTokenInfo: TokenInfo = {
   marketCap: 1330000000000,
   volume24h: 28500000000,
   change24h: 2.4,
-  description: 'Bitcoin is the first and largest cryptocurrency by market capitalization. It operates on a decentralized peer-to-peer network and serves as digital gold for store of value.'
+  description: 'Bitcoin is the first and largest cryptocurrency by market capitalization. It operates on a decentralized peer-to-peer network and serves as digital gold and a store of value.'
 };
