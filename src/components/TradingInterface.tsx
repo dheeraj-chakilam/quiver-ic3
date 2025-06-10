@@ -177,7 +177,7 @@ const TradingInterface: React.FC<TradingInterfaceProps> = ({ market }) => {
             ? 'bg-green-600 hover:bg-green-700 text-white'
             : 'bg-red-600 hover:bg-red-700 text-white'
         }`}
-        disabled={!amount}
+        disabled={parseFloat(amount) <= 0}
       >
         <Wallet className="h-4 w-4 inline mr-2" />
         Buy {selectedSide.toUpperCase()} for ${amount || '0.00'}
