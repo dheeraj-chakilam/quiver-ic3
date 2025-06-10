@@ -6,7 +6,7 @@ interface PriceChartProps {
   market: Market;
 }
 
-// Generate mock price data for the chart
+// Generate mock price and probability data for the chart
 const generatePriceData = (currentPrice: number, targetPrice: number) => {
   const data = [];
   const days = 30;
