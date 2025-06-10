@@ -7,7 +7,7 @@ interface PriceChartProps {
 }
 
 // Generate mock price data for the chart
-const generatePriceData = (currentPrice: number, targetPrice: number) => {
+export const generatePriceData = (currentPrice: number, targetPrice: number) => {
   const data = [];
   const days = 30;
   const startPrice = currentPrice * 0.85;
