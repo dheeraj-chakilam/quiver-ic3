@@ -10,7 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/market/:id" element={<MarketPage />} />
+        <Route path="/markets/:slug" element={<MarketPage />} />
       </Routes>
     </div>
   );

@@ -3,6 +3,7 @@ import { Market, TechnicalIndicator, SentimentData, TokenInfo } from '../types';
 export const mockMarkets: Market[] = [
   {
     id: '1',
+    slug: 'bitcoin-70k-dec-31-2024',
     tokenSymbol: 'BTC',
     tokenName: 'Bitcoin',
     currentPrice: 67423,
@@ -14,10 +15,17 @@ export const mockMarkets: Market[] = [
     yesPrice: 0.52,
     noPrice: 0.48,
     description: 'Will Bitcoin reach $70,000 by December 31, 2024?',
-    change24h: 2.4
+    change24h: 2.4,
+    outcomes: [
+      { label: '>110k', probability: 0.35, shares: 500000 },
+      { label: '100-110k', probability: 0.25, shares: 400000 },
+      { label: '90-100k', probability: 0.2, shares: 300000 },
+      { label: '<90k', probability: 0.2, shares: 350000 }
+    ]
   },
   {
     id: '2',
+    slug: 'ethereum-4k-nov-30-2024',
     tokenSymbol: 'ETH',
     tokenName: 'Ethereum',
     currentPrice: 3456,
@@ -29,10 +37,17 @@ export const mockMarkets: Market[] = [
     yesPrice: 0.58,
     noPrice: 0.42,
     description: 'Will Ethereum reach $4,000 by November 30, 2024?',
-    change24h: -1.2
+    change24h: -1.2,
+    outcomes: [
+      { label: '>4k', probability: 0.4, shares: 200000 },
+      { label: '3.5k-4k', probability: 0.3, shares: 150000 },
+      { label: '3k-3.5k', probability: 0.2, shares: 100000 },
+      { label: '<3k', probability: 0.1, shares: 80000 }
+    ]
   },
   {
     id: '3',
+    slug: 'solana-250-oct-15-2024',
     tokenSymbol: 'SOL',
     tokenName: 'Solana',
     currentPrice: 178,
@@ -44,7 +59,13 @@ export const mockMarkets: Market[] = [
     yesPrice: 0.53,
     noPrice: 0.47,
     description: 'Will Solana reach $250 by October 15, 2024?',
-    change24h: 5.7
+    change24h: 5.7,
+    outcomes: [
+      { label: '>250', probability: 0.3, shares: 120000 },
+      { label: '200-250', probability: 0.4, shares: 100000 },
+      { label: '150-200', probability: 0.2, shares: 80000 },
+      { label: '<150', probability: 0.1, shares: 40000 }
+    ]
   }
 ];
 

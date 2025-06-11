@@ -1,5 +1,9 @@
 export interface Market {
   id: string;
+  /**
+   * Human readable identifier used in URLs.
+   */
+  slug: string;
   tokenSymbol: string;
   tokenName: string;
   currentPrice: number;
@@ -12,6 +16,19 @@ export interface Market {
   noPrice: number;
   description: string;
   change24h: number;
+  /**
+   * Optional multi-outcome structure for ranged prediction markets.
+   */
+  outcomes?: Outcome[];
+}
+
+export interface Outcome {
+  label: string;
+  /**
+   * Implied probability expressed as a decimal between 0 and 1.
+   */
+  probability: number;
+  shares: number;
 }
 
 export interface TechnicalIndicator {
