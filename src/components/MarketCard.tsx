@@ -146,8 +146,8 @@ const MarketCard: React.FC<MarketCardProps> = ({ market }) => {
         </div>
       )}
 
-      <Link 
-        to={`/market/${market.id}`}
+      <Link
+        to={`/markets/${market.slug}`}
         className="flex items-center justify-center w-full py-2 px-4 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
       >
         <span className="mr-2">View Details</span>

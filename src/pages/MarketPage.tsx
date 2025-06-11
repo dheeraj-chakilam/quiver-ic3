@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, TrendingUp, TrendingDown, Clock, DollarSign, Users, BarChart3, Activity } from 'lucide-react';
+import { ArrowLeft, TrendingUp, TrendingDown, Clock, DollarSign, Users } from 'lucide-react';
 import { mockMarkets } from '../data/mockData';
 import PriceChart from '../components/PriceChart';
-import OrderBook from '../components/OrderBook';
-import TradingInterface from '../components/TradingInterface';
-import MarketActivity from '../components/MarketActivity';
 
 const MarketPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const market = mockMarkets.find(m => m.id === id);
-  const [activeTab, setActiveTab] = useState<'chart' | 'activity'>('chart');
+  const { slug } = useParams<{ slug: string }>();
+  const market = mockMarkets.find(m => m.slug === slug);
 
   if (!market) {
     return (
@@ -109,55 +105,35 @@ const MarketPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column - Chart and Activity */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Chart/Activity Tabs */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-            <div className="border-b border-gray-200">
-              <nav className="flex space-x-8 px-6">
-                <button
-                  onClick={() => setActiveTab('chart')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                    activeTab === 'chart'
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
-                >
-                  <BarChart3 className="h-4 w-4 inline mr-2" />
-                  Price Chart
-                </button>
-                <button
-                  onClick={() => setActiveTab('activity')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                    activeTab === 'activity'
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
-                >
-                  <Activity className="h-4 w-4 inline mr-2" />
-                  Market Activity
-                </button>
-              </nav>
-            </div>
-            
-            <div className="p-6">
-              {activeTab === 'chart' ? (
-                <PriceChart market={market} />
-              ) : (
-                <MarketActivity />
-              )}
-            </div>
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <PriceChart market={market} />
+      </div>
+
+      {market.outcomes && (
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mt-6">
+          <h2 className="text-lg font-semibold text-gray-900 px-6 pt-6">Price Ranges</h2>
+          <div className="overflow-x-auto p-6">
+            <table className="min-w-full divide-y divide-gray-200 text-sm">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="px-4 py-2 text-left font-medium text-gray-700">Range</th>
+                  <th className="px-4 py-2 text-left font-medium text-gray-700">Probability</th>
+                  <th className="px-4 py-2 text-left font-medium text-gray-700">Shares</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {market.outcomes.map((outcome) => (
+                  <tr key={outcome.label}>
+                    <td className="px-4 py-2 whitespace-nowrap">{outcome.label}</td>
+                    <td className="px-4 py-2 whitespace-nowrap">{(outcome.probability * 100).toFixed(0)}%</td>
+                    <td className="px-4 py-2 whitespace-nowrap">{formatNumber(outcome.shares)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-
-          {/* Order Book */}
-          <OrderBook market={market} />
         </div>
-
-        {/* Right Column - Trading Interface */}
-        <div>
-          <TradingInterface market={market} />
-        </div>
+      )}
       </div>
     </div>
   );
